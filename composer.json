@@ -1,0 +1,13 @@
+{
+    "name": "seb/projet-recettes",
+    "authors": [
+        {
+            "name": "Sebastien Maloron",
+            "email": "contact@smaloron.eu"
+        }
+    ],
+    "require": {
+        "slim/slim": "3.*",
+        "slim/twig-view": "2.5.1"
+    }
+}
