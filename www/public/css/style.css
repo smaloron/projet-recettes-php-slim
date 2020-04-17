@@ -12,6 +12,14 @@ body{
     text-decoration: none;
 }
 
+.tags{
+    color: white;
+}
+
+.tags:hover{
+    color: white;
+
+}
 
 .category_link{
     color:  #56a854;

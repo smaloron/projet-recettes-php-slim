@@ -52,16 +52,10 @@
         </div>
         <div>
             <h3 class="mb-3 mt-5 yummy_title">Tag</h3>
+                    {% for tag in tags %}
+                        <span class="badge badge-pill badge-primary"><a href="/byTag/{{ tag.id }}" class="tags"> {{ tag.tag_name }} </a></span>
+                    {% endfor %}
 
-            <span class="badge badge-pill badge-primary">#dessert</span>
-            <span class="badge badge-pill badge-primary">#pommes</span>
-            <span class="badge badge-pill badge-primary">#saison</span>
-            <span class="badge badge-pill badge-primary">#recettemaison</span>
-            <span class="badge badge-pill badge-primary">#yummy</span>
-            <span class="badge badge-pill badge-primary">#Tarte</span>
-            <span class="badge badge-pill badge-primary">#Primary</span>
-            <span class="badge badge-pill badge-primary">#Primary</span>
-            <span class="badge badge-pill badge-primary">#Primary</span>
         </div>
 
         <div>
