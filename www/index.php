@@ -22,5 +22,7 @@ require "../app/routes/recipe.php";
 
 require "../app/routes/register.php";
 
+require "../app/routes/showRecipe.php";
+
 //lancement de l'application
 $app->run();

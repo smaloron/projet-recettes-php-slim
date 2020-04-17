@@ -209,6 +209,7 @@ VALUES (
         1
 );
 
+<<<<<<< HEAD
 INSERT INTO ingredients (ingredient_name, kind_id)
     VALUES  ('farine', 7),
             ('oeufs', 5),
@@ -230,3 +231,12 @@ CREATE OR REPLACE VIEW view_ingredientsList AS
             LEFT JOIN recipes_ingredients as ri ON ri.ingredient_id = ingredients.id
     GROUP BY ingredients.id, kind_id
     ORDER BY kind_id;
+=======
+
+INSERT INTO ingredients (ingredient_name, kind_id) VALUES
+('pomme Canada', 1),('oeufs', 5),('beurre', 5),('sucre', 10),('farine', 11),('sel', 11),('poudre amande',11);
+
+
+INSERT INTO recipes_ingredients (ingredient_id, recipe_id) VALUES
+(1, 1),(2, 1),(3, 1),(4, 1),(5, 1),(6, 1),(7, 1);
+>>>>>>> US05
