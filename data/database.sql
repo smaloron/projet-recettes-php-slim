@@ -45,8 +45,11 @@ CREATE TABLE users
     user_name     VARCHAR(50)        NOT NULL,
     user_email    VARCHAR(50) UNIQUE NOT NULL,
     user_password VARCHAR(128)       NOT NULL,
-    role_id       TINYINT UNSIGNED   NOT NULL DEFAULT 1,
-    PRIMARY KEY (id)
+    role_id       INT UNSIGNED   NOT NULL DEFAULT 1,
+    PRIMARY KEY (id),
+    CONSTRAINT users_to_roles
+        FOREIGN KEY (role_id)
+        REFERENCES roles(id)
 );
 
 -- Jo
@@ -80,7 +83,10 @@ CREATE TABLE ingredients
     id              SMALLINT UNSIGNED AUTO_INCREMENT,
     ingredient_name VARCHAR(30)      NOT NULL,
     kind_id         TINYINT UNSIGNED NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+        CONSTRAINT ingredient_kinds_to_ingredient
+        FOREIGN KEY (kind_id)
+        REFERENCES ingredient_kinds(id)
 );
 
 -- Valerian
@@ -116,7 +122,10 @@ CREATE TABLE recipe_comments
     created_at    TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     recipe_rating TINYINT UNSIGNED,
     recipe_id     MEDIUMINT UNSIGNED,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+     CONSTRAINT recipe_comments_to_recipes
+        FOREIGN KEY (recipe_id)
+        REFERENCES recipes(id)
 );
 
 -- Hassan
@@ -124,9 +133,18 @@ CREATE TABLE recipes_tags
 (
     tag_id    SMALLINT UNSIGNED,
     recipe_id MEDIUMINT UNSIGNED,
-    PRIMARY KEY (tag_id, recipe_id)
+    PRIMARY KEY (tag_id, recipe_id),
+        CONSTRAINT recipes_tags_to_tags
+            FOREIGN KEY (tag_id)
+            REFERENCES  tags(id),
+        CONSTRAINT recipes_tags_to_recipes
+            FOREIGN KEY (recipe_id)
+            REFERENCES recipes(id)
 );
 
+-- Insertion des catégories
+INSERT INTO categories (category_name)
+    VALUES ('Apéritf et buffet'), ('Entrée'), ('Plat principal'), ('Dessert');
 /********************************
   INSERTION DES DONNEES
 *********************************/
