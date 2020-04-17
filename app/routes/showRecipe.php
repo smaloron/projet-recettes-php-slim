@@ -61,13 +61,16 @@ $app->get("/byIngredient/{id}", function (Request $request, Response $response, 
 
     $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 
-    $sql = "SELECT title,
-                    image,
-                    description,
-                    id
-                    from recipes
-            JOIN recipes_ingredients as ri
-            ON ri.recipe_id = :id;";
+
+    $sql = "SELECT * from recipes_ingredients
+
+            JOIN recipes as r
+            ON r.id = recipe_id
+
+            JOIN ingredients as i
+            ON i.id = recipe_id
+
+        WHERE ingredient_id = :id;";
 
     $statement = $this->get("pdo")->prepare($sql);
     $statement->execute($args);
