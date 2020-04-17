@@ -45,7 +45,7 @@ CREATE TABLE users
     user_name     VARCHAR(50)        NOT NULL,
     user_email    VARCHAR(50) UNIQUE NOT NULL,
     user_password VARCHAR(128)       NOT NULL,
-    role_id       INT UNSIGNED       NOT NULL DEFAULT 1,
+    role_id       TINYINT UNSIGNED       NOT NULL DEFAULT 1,
     PRIMARY KEY (id),
     CONSTRAINT users_to_roles
         FOREIGN KEY (role_id)
@@ -82,7 +82,7 @@ CREATE TABLE ingredients
 (
     id              SMALLINT UNSIGNED AUTO_INCREMENT,
     ingredient_name VARCHAR(30)      NOT NULL,
-    kind_id         TINYINT UNSIGNED NOT NULL,
+    kind_id         SMALLINT UNSIGNED NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT ingredient_kinds_to_ingredient
         FOREIGN KEY (kind_id)
@@ -162,12 +162,6 @@ VALUES ('Apéritf et buffet'),
 -- insertion des roles (utilisateur, auteur)
 INSERT INTO roles (role_name) VALUES ('utilisateur'), ('auteur');
 
--- Insert d'une recette pour test de la page
-INSERT INTO recipes(title, description, instructions, image, difficulty_id, prep_time, cooking_time, category_id,
-                    author_id)
-VALUES ('La tarte aux pommes', 'Recette tradionnelle', '1. Allumez le four, 2. Préparez la pâtes, 3. Coupez les pommes',
-        'tartepommes.jpg', 1, 15, 40, 1, 1);
-
 -- Insert des types d'ingrédients
 INSERT INTO ingredient_kinds (kind_name)
 VALUES ('Fruits'),
@@ -193,3 +187,12 @@ VALUES ('Super facile'),
        ('Moyen'),
        ('Difficile'),
        ('Très difficile');
+
+INSERT INTO users (user_name, user_email, user_password) VALUES
+('joe user', 'joe@mail.com', '$2y$10$hyYsUHeh..dicDO41LY0ZOYsUC/qMt6Apo8qg7ZXrP72H/M7.WieS', 1);
+
+-- Insert d'une recette pour test de la page
+INSERT INTO recipes(title, description, instructions, image, difficulty_id, prep_time, cooking_time, category_id,
+                    author_id)
+VALUES ('La tarte aux pommes', 'Recette tradionnelle', '1. Allumez le four, 2. Préparez la pâtes, 3. Coupez les pommes',
+        'tartepommes.jpg', 1, 15, 40, 1, 1);
