@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 error_reporting(E_ALL);
 
 // Déclaration des classes dont on aura besoin
@@ -16,9 +16,12 @@ $container = require "../app/container.php";
 $app = new App($container);
 
 require "../app/routes/home.php";
-
-
+require "../app/routes/ingredientsList.php";
+require "../app/routes/recipe.php";
 require "../app/routes/register.php";
+require "../app/routes/login.php";
+
+require "../app/routes/showRecipe.php";
 
 //lancement de l'application
 $app->run();

@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+{% block content %}
+
+    <a class="btn btn-primary mt-3" href="/">Accueil </a>
+    <h1 class="yummy_title mt-2">Liste des recettes avec le Tag selectionné</h1>
+
+    <hr>
+    <div class="card-deck">
+        {% for element in recipe %}
+
+            <div class="card mt-3  col-3 ml-2">
+                <img class="card-img-top  mt-2" style="max-height: 120px;" src="../../../public/img/{{ element.image }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title " style="min-height: 70px;">{{ element.title }}</h5>
+                    <p class="card-text"  style="min-height: 75px;">{{ element.description[:40]}}...</p>
+                    <a href="/recipe/{{ element.id }}" class="btn btn-success">Consulter</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

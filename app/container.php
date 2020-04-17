@@ -19,13 +19,26 @@ $container = new Container($conf);
 
 //Entrée du container pour stocker une instance de PDO
 $container["pdo"] = function(){
-    $dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8;port=8889";
+    $dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8;port=3306";
     $options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
     ];
 
     return new PDO($dsn, DB_USER, DB_PASS, $options);
+};
+
+$container["pdoRecipe"] = function(){
+    $dsn = "mysql:host=127.0.0.1;dbname=yummy;charset=utf8";
+    $user = "root";
+    $pass = "";
+
+    $options = [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ];
+
+    return new PDO($dsn, $user, $pass, $options);
 };
 
 //Configuration du moteur de template Twig

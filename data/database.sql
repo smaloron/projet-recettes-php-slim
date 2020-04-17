@@ -80,8 +80,8 @@ CREATE TABLE ingredients
 (
     id              SMALLINT UNSIGNED AUTO_INCREMENT,
     ingredient_name VARCHAR(30)      NOT NULL,
-    kind_id         TINYINT UNSIGNED NOT NULL,
-    PRIMARY KEY (id)
+    kind_id         SMALLINT UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
         CONSTRAINT ingredient_kinds_to_ingredient
         FOREIGN KEY (kind_id)
             REFERENCES ingredient_kinds (id)
@@ -142,17 +142,17 @@ CREATE TABLE recipes_tags
             REFERENCES recipes (id)
 );
 
+/********************************
+  INSERTION DES DONNEES
+*********************************/
+
 -- Insertion des catégories
 INSERT INTO categories (category_name)
 VALUES ('Apéritf et buffet'),
        ('Entrée'),
        ('Plat principal'),
        ('Dessert');
-/********************************
-  INSERTION DES DONNEES
-*********************************/
 
--- Loqmen
 -- insertion des roles (utilisateur, auteur)
 INSERT INTO roles (role_name) VALUES ('utilisateur'), ('auteur');
 
@@ -208,3 +208,35 @@ VALUES (
         1,
         1
 );
+
+<<<<<<< HEAD
+INSERT INTO ingredients (ingredient_name, kind_id)
+    VALUES  ('farine', 7),
+            ('oeufs', 5),
+            ('beurre', 6),
+            ('riz', 7),
+            ('miel', 10),
+            ('confiture', 10),
+            ('chocolat', 11),
+            ('yaourt', 6),
+            ('sucre', 10);
+
+
+
+
+CREATE OR REPLACE VIEW view_ingredientsList AS
+    SELECT ingredient_name, COUNT(recipe_id) as nb, ingredient_kinds.kind_name
+    FROM ingredients
+            INNER JOIN ingredient_kinds ON ingredient_kinds.id = ingredients.kind_id
+            LEFT JOIN recipes_ingredients as ri ON ri.ingredient_id = ingredients.id
+    GROUP BY ingredients.id, kind_id
+    ORDER BY kind_id;
+=======
+
+INSERT INTO ingredients (ingredient_name, kind_id) VALUES
+('pomme Canada', 1),('oeufs', 5),('beurre', 5),('sucre', 10),('farine', 11),('sel', 11),('poudre amande',11);
+
+
+INSERT INTO recipes_ingredients (ingredient_id, recipe_id) VALUES
+(1, 1),(2, 1),(3, 1),(4, 1),(5, 1),(6, 1),(7, 1);
+>>>>>>> US05
