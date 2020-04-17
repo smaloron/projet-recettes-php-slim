@@ -45,7 +45,7 @@ CREATE TABLE users
     user_name     VARCHAR(50)        NOT NULL,
     user_email    VARCHAR(50) UNIQUE NOT NULL,
     user_password VARCHAR(128)       NOT NULL,
-    role_id       INT UNSIGNED   NOT NULL DEFAULT 1,
+    role_id       TINYINT UNSIGNED   NOT NULL DEFAULT 1,
     PRIMARY KEY (id),
     CONSTRAINT users_to_roles
         FOREIGN KEY (role_id)
@@ -80,8 +80,8 @@ CREATE TABLE ingredients
 (
     id              SMALLINT UNSIGNED AUTO_INCREMENT,
     ingredient_name VARCHAR(30)      NOT NULL,
-    kind_id         TINYINT UNSIGNED NOT NULL,
-    PRIMARY KEY (id)
+    kind_id         SMALLINT UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
         CONSTRAINT ingredient_kinds_to_ingredient
         FOREIGN KEY (kind_id)
         REFERENCES ingredient_kinds(id)

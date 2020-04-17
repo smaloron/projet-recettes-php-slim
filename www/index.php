@@ -17,5 +17,8 @@ $app = new App($container);
 
 require "../app/routes/home.php";
 
+
+require "../app/routes/register.php";
+
 //lancement de l'application
 $app->run();
