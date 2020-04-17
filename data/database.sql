@@ -45,8 +45,11 @@ CREATE TABLE users
     user_name     VARCHAR(50)        NOT NULL,
     user_email    VARCHAR(50) UNIQUE NOT NULL,
     user_password VARCHAR(128)       NOT NULL,
-    role_id       TINYINT UNSIGNED   NOT NULL DEFAULT 1,
-    PRIMARY KEY (id)
+    role_id       INT UNSIGNED   NOT NULL DEFAULT 1,
+    PRIMARY KEY (id),
+    CONSTRAINT users_to_roles
+        FOREIGN KEY (role_id)
+        REFERENCES roles(id)
 );
 
 CREATE TABLE recipes
@@ -60,7 +63,7 @@ CREATE TABLE recipes
     prep_time     TINYINT UNSIGNED  NOT NULL,
     cooking_time  TINYINT UNSIGNED,
     category_id   TINYINT UNSIGNED  NOT NULL,
-    author_id     SMALLINT UNSIGNED NOT NULL,
+    author_id     INT UNSIGNED NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -96,14 +99,23 @@ CREATE TABLE recipe_comments
     created_at    TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     recipe_rating TINYINT UNSIGNED,
     recipe_id     MEDIUMINT UNSIGNED,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+     CONSTRAINT recipe_comments_to_recipes
+        FOREIGN KEY (recipe_id)
+        REFERENCES recipes(id)
 );
 
 CREATE TABLE recipes_tags
 (
     tag_id    SMALLINT UNSIGNED,
     recipe_id MEDIUMINT UNSIGNED,
-    PRIMARY KEY (tag_id, recipe_id)
+    PRIMARY KEY (tag_id, recipe_id),
+        CONSTRAINT recipes_tags_to_tags
+            FOREIGN KEY (tag_id)
+            REFERENCES  tags(id),
+        CONSTRAINT recipes_tags_to_recipes
+            FOREIGN KEY (recipe_id)
+            REFERENCES recipes(id)
 );
 
 
