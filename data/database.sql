@@ -49,7 +49,7 @@ CREATE TABLE users
     PRIMARY KEY (id),
     CONSTRAINT users_to_roles
         FOREIGN KEY (role_id)
-        REFERENCES roles(id)
+            REFERENCES roles (id)
 );
 
 CREATE TABLE recipes
@@ -65,26 +65,26 @@ CREATE TABLE recipes
     category_id   TINYINT UNSIGNED  NOT NULL,
     author_id     INT UNSIGNED NOT NULL,
     PRIMARY KEY (id),
-        CONSTRAINT difficulty_levels_to_recipes
-            FOREIGN KEY (difficulty_id)
-            REFERENCES difficulty_levels(id),
-        CONSTRAINT categories_to_recipes
-            FOREIGN KEY (category_id)
-            REFERENCES categories(id),
-        CONSTRAINT users_to_recipes
-            FOREIGN KEY (author_id)
-            REFERENCES users(id)
+    CONSTRAINT difficulty_levels_to_recipes
+        FOREIGN KEY (difficulty_id)
+            REFERENCES difficulty_levels (id),
+    CONSTRAINT categories_to_recipes
+        FOREIGN KEY (category_id)
+            REFERENCES categories (id),
+    CONSTRAINT users_to_recipes
+        FOREIGN KEY (author_id)
+            REFERENCES users (id)
 );
 
 CREATE TABLE ingredients
 (
     id              SMALLINT UNSIGNED AUTO_INCREMENT,
     ingredient_name VARCHAR(30)      NOT NULL,
-    kind_id         SMALLINT UNSIGNED NOT NULL,
-    PRIMARY KEY (id),
+    kind_id         TINYINT UNSIGNED NOT NULL,
+    PRIMARY KEY (id)
         CONSTRAINT ingredient_kinds_to_ingredient
         FOREIGN KEY (kind_id)
-        REFERENCES ingredient_kinds(id)
+            REFERENCES ingredient_kinds (id)
 );
 
 CREATE TABLE recipes_ingredients
@@ -93,11 +93,11 @@ CREATE TABLE recipes_ingredients
     recipe_id     MEDIUMINT UNSIGNED,
     PRIMARY KEY (ingredient_id, recipe_id),
     CONSTRAINT ingredient_id_to_recipe_id
-    FOREIGN KEY (ingredient_id)
-    REFERENCES ingredients (id),
+        FOREIGN KEY (ingredient_id)
+            REFERENCES ingredients (id),
     CONSTRAINT recipe_id_to_ingredient_id
-    FOREIGN KEY (recipe_id)
-    REFERENCES recipes(id)
+        FOREIGN KEY (recipe_id)
+            REFERENCES recipes (id)
 );
 
 CREATE TABLE recipe_books
@@ -105,7 +105,13 @@ CREATE TABLE recipe_books
     user_id    INT UNSIGNED,
     recipe_id  MEDIUMINT UNSIGNED,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (user_id, recipe_id)
+    PRIMARY KEY (user_id, recipe_id),
+    CONSTRAINT recipe_books_to_users
+        FOREIGN KEY (user_id)
+            REFERENCES users (id),
+    CONSTRAINT recipe_books_to_recipes
+        FOREIGN KEY (recipe_id)
+            REFERENCES recipes (id)
 );
 
 CREATE TABLE recipe_comments
@@ -118,9 +124,9 @@ CREATE TABLE recipe_comments
     recipe_rating TINYINT UNSIGNED,
     recipe_id     MEDIUMINT UNSIGNED,
     PRIMARY KEY (id),
-     CONSTRAINT recipe_comments_to_recipes
+    CONSTRAINT recipe_comments_to_recipes
         FOREIGN KEY (recipe_id)
-        REFERENCES recipes(id)
+            REFERENCES recipes (id)
 );
 
 CREATE TABLE recipes_tags
@@ -128,15 +134,77 @@ CREATE TABLE recipes_tags
     tag_id    SMALLINT UNSIGNED,
     recipe_id MEDIUMINT UNSIGNED,
     PRIMARY KEY (tag_id, recipe_id),
-        CONSTRAINT recipes_tags_to_tags
-            FOREIGN KEY (tag_id)
-            REFERENCES  tags(id),
-        CONSTRAINT recipes_tags_to_recipes
-            FOREIGN KEY (recipe_id)
-            REFERENCES recipes(id)
+    CONSTRAINT recipes_tags_to_tags
+        FOREIGN KEY (tag_id)
+            REFERENCES tags (id),
+    CONSTRAINT recipes_tags_to_recipes
+        FOREIGN KEY (recipe_id)
+            REFERENCES recipes (id)
 );
 
 -- Insertion des catégories
 INSERT INTO categories (category_name)
-    VALUES ('Apéritf et buffet'), ('Entrée'), ('Plat principal'), ('Dessert');
+VALUES ('Apéritf et buffet'),
+       ('Entrée'),
+       ('Plat principal'),
+       ('Dessert');
+/********************************
+  INSERTION DES DONNEES
+*********************************/
 
+-- Loqmen
+-- insertion des roles (utilisateur, auteur)
+INSERT INTO roles (role_name) VALUES ('utilisateur'), ('auteur');
+
+-- Insert des types d'ingrédients
+INSERT INTO ingredient_kinds (kind_name)
+VALUES ('Fruits'),
+       ('Légumes'),
+       ('Viande'),
+       ('Poisson'),
+       ('Oeuf'),
+       ('Produits laitiers'),
+       ('Féculents'),
+       ('Boissons'),
+       ('Matières grasses'),
+       ('Sucres'),
+       ('Autres');
+
+-- Insert des tags
+INSERT INTO tags (tag_name)
+VALUES ('deSaison'), ('Apéro'), ('Léger'), ('Dessert'), ('Simple');
+
+-- Insertion difficulty_leves
+INSERT INTO difficulty_levels (difficulty_label)
+VALUES ('Super facile'),
+       ('Facile'),
+       ('Moyen'),
+       ('Difficile'),
+       ('Très difficile');
+
+INSERT INTO users (user_name, user_email, user_password) VALUES
+('joe user', 'joe@mail.com', '$2y$10$hyYsUHeh..dicDO41LY0ZOYsUC/qMt6Apo8qg7ZXrP72H/M7.WieS');
+
+-- Insert d'une recette pour test de la page
+INSERT INTO recipes(
+    title,
+    description,
+    instructions,
+    image,
+    difficulty_id,
+    prep_time,
+    cooking_time,
+    category_id,
+    author_id
+)
+VALUES (
+        'La tarte aux pommes',
+        'Recette tradionnelle',
+        '1. Allumez le four, 2. Préparez la pâtes, 3. Coupez les pommes',
+        'tartepommes.jpg',
+        1,
+        15,
+        40,
+        1,
+        1
+);
