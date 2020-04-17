@@ -30,6 +30,7 @@ CREATE TABLE ingredient_kinds
     id        SMALLINT UNSIGNED AUTO_INCREMENT,
     kind_name VARCHAR(30) NOT NULL,
     PRIMARY KEY (id)
+
 );
 
 CREATE TABLE tags
@@ -70,6 +71,9 @@ CREATE TABLE ingredients
     ingredient_name VARCHAR(30)      NOT NULL,
     kind_id         TINYINT UNSIGNED NOT NULL,
     PRIMARY KEY (id)
+        CONSTRAINT ingredient_kinds_to_ingredient
+        FOREIGN KEY (kind_id)
+        REFERENCES ingredient_kinds(id)
 );
 
 CREATE TABLE recipes_ingredients
@@ -106,4 +110,7 @@ CREATE TABLE recipes_tags
     PRIMARY KEY (tag_id, recipe_id)
 );
 
+-- Insertion des catégories
+INSERT INTO categories (category_name)
+    VALUES ('Apéritf et buffet'), ('Entrée'), ('Plat principal'), ('Dessert');
 
