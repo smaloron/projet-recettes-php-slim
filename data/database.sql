@@ -158,7 +158,11 @@ VALUES ('Apéritf et buffet'),
        ('Entrée'),
        ('Plat principal'),
        ('Dessert');
+/********************************
+  INSERTION DES DONNEES
+*********************************/
 
+-- Loqmen
 -- insertion des roles (utilisateur, auteur)
 INSERT INTO roles (role_name) VALUES ('utilisateur'), ('auteur');
 
@@ -177,8 +181,8 @@ VALUES ('Fruits'),
        ('Autres');
 
 -- Insert des tags
-INSERT INTO tags(tag_name)
-VALUES ('deSaison', 'Apéro', 'Léger', 'Dessert', 'Simple');
+INSERT INTO tags (tag_name)
+VALUES ('deSaison'), ('Apéro'), ('Léger'), ('Dessert'), ('Simple');
 
 -- Insertion difficulty_leves
 INSERT INTO difficulty_levels (difficulty_label)
@@ -188,8 +192,29 @@ VALUES ('Super facile'),
        ('Difficile'),
        ('Très difficile');
 
+INSERT INTO users (user_name, user_email, user_password) VALUES
+('joe user', 'joe@mail.com', '$2y$10$hyYsUHeh..dicDO41LY0ZOYsUC/qMt6Apo8qg7ZXrP72H/M7.WieS');
+
 -- Insert d'une recette pour test de la page
-INSERT INTO recipes(title, description, instructions, image, difficulty_id, prep_time, cooking_time, category_id,
-                    author_id)
-VALUES ('La tarte aux pommes', 'Recette tradionnelle', '1. Allumez le four, 2. Préparez la pâtes, 3. Coupez les pommes',
-        'tartepommes.jpg', 1, 15, 40, 1, 1);
+INSERT INTO recipes(
+    title,
+    description,
+    instructions,
+    image,
+    difficulty_id,
+    prep_time,
+    cooking_time,
+    category_id,
+    author_id
+)
+VALUES (
+        'La tarte aux pommes',
+        'Recette tradionnelle',
+        '1. Allumez le four, 2. Préparez la pâtes, 3. Coupez les pommes',
+        'tartepommes.jpg',
+        1,
+        15,
+        40,
+        1,
+        1
+);
