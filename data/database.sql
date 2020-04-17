@@ -142,8 +142,8 @@ INSERT INTO categories (category_name)
 
 -- Insert d'une recette pour test de la page
 INSERT INTO recipes(title, description, instructions, image, difficulty_id, prep_time, cooking_time, category_id, author_id)
-VALUES('La tarte aux pommes', 'Recette tradionnelle', '1. Allumez le four, 2. Préparez la pâtes, 3. Coupez les pommes', 'tartepommes.jpg', 1, 15, 40, 1);
+VALUES('La tarte aux pommes', 'Recette tradionnelle', '1. Allumez le four, 2. Préparez la pâtes, 3. Coupez les pommes', 'tartepommes.jpg', 1, 15, 40, 1, 1);
 
 -- Insert des tags
-INSERT INTO tags(id, tag_name)
+INSERT INTO tags(tag_name)
 VALUES('deSaison', 'Apéro', 'Léger', 'Dessert', 'Simple');
