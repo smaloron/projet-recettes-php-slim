@@ -1,24 +1,22 @@
 {% extends "base.html.twig" %}
 {% block content %}
     <div class="section_1 mt-5">
-        <h1 class="yummy_title recipe_name">La Tarte aux pommes</h1>
+        <h1 class="yummy_title recipe_name">{{ recipe.title }}</h1>
         <span><a data-toggle="tooltip" title="Ajoutez au carnet !" href="#"><img src="../../../public/img/fav.png" class="img-fluid ml-1 pb-3" width="25"></a></span>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate labore voluptates incidunt pariatur fugit suscipit
-            ipsa quisquam ab unde, in totam praesentium molestiae iure quod voluptas minus blanditiis tenetur molestias!
-        </p>
+        <p>{{ recipe.description }}</p>
         <div>
             <div class="mb-3 text-center">
                 <span data-toggle="tooltip" title="Difficulté ">
                             <img src="../../../public/img/cooking_hat.png" alt="" class="img-fluid" width="28" >
-                            <span class="mr-3">Facile</span>
+                            <span class="mr-3">{{ recipe.difficulty_label }}</span>
                 </span>
                 <span data-toggle="tooltip" title="Temps de préparation">
                             <img src="../../../public/img/clock.png" alt="" class="img-fluid" width="25" >
-                            <span class="mr-3">25 min</span>
+                            <span class="mr-3">{{ recipe.prep_time }} min</span>
                 </span>
                 <span data-toggle="tooltip" title="Cuisson">
                             <img src="../../../public/img/fried.png" alt="" class="img-fluid" width="32" >
-                            <span class="mr-3">45 min</span>
+                            <span class="mr-3">{{ recipe.cooking_time }} min</span>
                 </span>
                 <span data-toggle="tooltip" title="Note">
                             <img src="../../../public/img/star.png" alt="" class="img-fluid" width="25" >
@@ -26,8 +24,8 @@
                 </span>
             </div>
         </div>
-        <img src="../../../public/img/tartepommes.jpg" alt="" class="img-fluid img-recipe" width="750" height="300">
-        <p class="text-center mt-4"><a href="#" class="category_link">Découvrez les autres desserts</a></p>
+        <img src="../../../public/img/{{ recipe.image }}" alt="" class="img-fluid img-recipe" width="750" height="300">
+        <p class="text-center mt-4">Découvrez les autres recettes : <a href="#" class="category_link">{{ recipe.category_name }}</a></p>
     </div>
 {% endblock %}
 {% block aside %}
@@ -41,21 +39,14 @@
             <a href="#down"><img src="../../../public/img/down.png" width="20" class=""></a>
             <h3 class="mb-3 mt-2 yummy_title"> Liste des ingrédients</h3>
             <ul>
-                <li>6 Pommes Canada</li>
-                <li>4 oeufs</li>
-                <li>250 g de beurre</li>
-                <li>230 g de sucre</li>
-                <li>13 g de farine</li>
-                <li>1 pincée de sel</li>
-                <li>80 g de poudre d'amandes</li>
+                {% for ingredient in ingredientsList %}
+                   <li><a class="ingredients" href="/byIngredient/{{ ingredient.id }}" > {{ ingredient.ingredient_name }} </a> </li>
+                {% endfor %}
             </ul>
             <h3 class="mb-3 yummy_title">Préparation</h3>
-            <ol>
-                <li class="mb-2">Couper les pommes</li>
-                <li class="mb-2">Préparez la pâte 2 heures à l'avance. Mélangez le beurre, le sucre et le sucre glace</li>
-                <li class="mb-2">Rajoutez la poudre d'amandes, puis les oeufs et enfin la farine et le sel. Mélangez jusqu'à l'obtention d'une boule de pâte. Couvrez de film alimentaire et mettez 2 heures au frig</li>
-                <li class="mb-2">Diviser la pâte en 2 (vous avez de quoi faire 2 tartes et pouvez congeler une portion de pâte pour plus tard...) et étalez sur un plan de travail fariné. Placez dans un moule à tarte beurré et fariné</li>
-            </ol>
+            <p>
+                {{ recipe.instructions }}
+            </p>
             <div id="down"></div>
             <a href="#up"><img src="../../../public/img/up.png" width="18"></a>
         </div>

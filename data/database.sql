@@ -214,3 +214,11 @@ VALUES (
         1,
         1
 );
+
+
+INSERT INTO ingredients (ingredient_name, kind_id) VALUES
+('pomme Canada', 1),('oeufs', 5),('beurre', 5),('sucre', 10),('farine', 11),('sel', 11),('poudre amande',11);
+
+
+INSERT INTO recipes_ingredients (ingredient_id, recipe_id) VALUES
+(1, 1),(2, 1),(3, 1),(4, 1),(5, 1),(6, 1),(7, 1);

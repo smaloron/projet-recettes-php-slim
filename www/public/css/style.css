@@ -7,6 +7,12 @@ body{
 
 }
 
+.ingredients{
+    color: grey;
+    text-decoration: none;
+}
+
+
 .category_link{
     color:  #56a854;
     font-size:14px;
