@@ -109,7 +109,13 @@ CREATE TABLE recipe_books
     user_id    INT UNSIGNED,
     recipe_id  MEDIUMINT UNSIGNED,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (user_id, recipe_id)
+    PRIMARY KEY (user_id, recipe_id),
+    CONSTRAINT recipe_books_to_users
+        FOREIGN KEY (user_id)
+        REFERENCES users(id),
+    CONSTRAINT recipe_books_to_recipes
+        FOREIGN KEY (recipe_id)
+        REFERENCES recipes(id)
 );
 
 -- Hassan
@@ -163,3 +169,28 @@ INSERT INTO categories (category_name)
 
 
 
+-- Insert d'une recette pour test de la page
+INSERT INTO recipes(title, description, instructions, image, difficulty_id, prep_time, cooking_time, category_id, author_id)
+VALUES('La tarte aux pommes', 'Recette tradionnelle', '1. Allumez le four, 2. Préparez la pâtes, 3. Coupez les pommes', 'tartepommes.jpg', 1, 15, 40, 1, 1);
+
+-- Insert des types d'ingrédients
+INSERT INTO ingredient_kinds (kind_name)
+    VALUES  ('Fruits'), ('Légumes'),
+            ('Viande'), ('Poisson'), ('Oeuf'),
+            ('Produits laitiers'),
+            ('Féculents'),
+            ('Boissons'), ('Matières grasses'),
+            ('Sucres'), ('Autres');
+
+-- Insert des tags
+INSERT INTO tags(tag_name)
+VALUES('deSaison', 'Apéro', 'Léger', 'Dessert', 'Simple');
+
+-- Insertion difficulty_leves
+INSERT INTO difficulty_levels (difficulty_label)
+VALUES
+    ('Super facile'),
+    ('Facile'),
+    ('Moyen'),
+    ('Difficile'),
+    ('Très difficile');
