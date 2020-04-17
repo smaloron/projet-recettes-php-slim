@@ -64,7 +64,16 @@ CREATE TABLE recipes
     cooking_time  TINYINT UNSIGNED,
     category_id   TINYINT UNSIGNED  NOT NULL,
     author_id     INT UNSIGNED NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+        CONSTRAINT difficulty_levels_to_recipes
+            FOREIGN KEY (difficulty_id)
+            REFERENCES difficulty_levels(id),
+        CONSTRAINT categories_to_recipes
+            FOREIGN KEY (category_id)
+            REFERENCES categories(id),
+        CONSTRAINT users_to_recipes
+            FOREIGN KEY (author_id)
+            REFERENCES users(id)
 );
 
 CREATE TABLE ingredients
@@ -73,13 +82,22 @@ CREATE TABLE ingredients
     ingredient_name VARCHAR(30)      NOT NULL,
     kind_id         TINYINT UNSIGNED NOT NULL,
     PRIMARY KEY (id)
+        CONSTRAINT ingredient_kinds_to_ingredient
+        FOREIGN KEY (kind_id)
+        REFERENCES ingredient_kinds(id)
 );
 
 CREATE TABLE recipes_ingredients
 (
     ingredient_id SMALLINT UNSIGNED,
     recipe_id     MEDIUMINT UNSIGNED,
-    PRIMARY KEY (ingredient_id, recipe_id)
+    PRIMARY KEY (ingredient_id, recipe_id),
+    CONSTRAINT ingredient_id_to_recipe_id
+    FOREIGN KEY (ingredient_id)
+    REFERENCES ingredients (id),
+    CONSTRAINT recipe_id_to_ingredient_id
+    FOREIGN KEY (recipe_id)
+    REFERENCES recipes(id)
 );
 
 CREATE TABLE recipe_books
@@ -118,4 +136,7 @@ CREATE TABLE recipes_tags
             REFERENCES recipes(id)
 );
 
+-- Insertion des catégories
+INSERT INTO categories (category_name)
+    VALUES ('Apéritf et buffet'), ('Entrée'), ('Plat principal'), ('Dessert');
 
