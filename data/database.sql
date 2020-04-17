@@ -214,3 +214,25 @@ VALUES (
         1,
         1
 );
+
+INSERT INTO ingredients (ingredient_name, kind_id)
+    VALUES  ('farine', 7),
+            ('oeufs', 5),
+            ('beurre', 6),
+            ('riz', 7),
+            ('miel', 10),
+            ('confiture', 10),
+            ('chocolat', 11),
+            ('yaourt', 6),
+            ('sucre', 10);
+
+
+
+
+CREATE OR REPLACE VIEW view_ingredientsList AS
+    SELECT ingredient_name, COUNT(recipe_id) as nb, ingredient_kinds.kind_name
+    FROM ingredients
+            INNER JOIN ingredient_kinds ON ingredient_kinds.id = ingredients.kind_id
+            LEFT JOIN recipes_ingredients as ri ON ri.ingredient_id = ingredients.id
+    GROUP BY ingredients.id, kind_id
+    ORDER BY kind_id;

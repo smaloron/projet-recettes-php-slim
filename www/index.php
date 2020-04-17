@@ -16,6 +16,7 @@ $container = require "../app/container.php";
 $app = new App($container);
 
 require "../app/routes/home.php";
+require "../app/routes/ingredientsList.php";
 
 //lancement de l'application
 $app->run();
