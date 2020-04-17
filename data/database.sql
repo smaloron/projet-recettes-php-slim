@@ -79,12 +79,19 @@ CREATE TABLE recipes_ingredients
     PRIMARY KEY (ingredient_id, recipe_id)
 );
 
+
 CREATE TABLE recipe_books
 (
     user_id    INT UNSIGNED,
     recipe_id  MEDIUMINT UNSIGNED,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (user_id, recipe_id)
+    PRIMARY KEY (user_id, recipe_id),
+    CONSTRAINT recipe_books_to_users
+        FOREIGN KEY (user_id)
+        REFERENCES users(id),
+    CONSTRAINT recipe_books_to_recipes
+        FOREIGN KEY (recipe_id)
+        REFERENCES recipes(id)
 );
 
 CREATE TABLE recipe_comments
@@ -106,4 +113,10 @@ CREATE TABLE recipes_tags
     PRIMARY KEY (tag_id, recipe_id)
 );
 
-
+INSERT INTO ingredient_kinds (kind_name)
+    VALUES  ('Fruits'), ('Légumes'),
+            ('Viande'), ('Poisson'), ('Oeuf'),
+            ('Produits laitiers'),
+            ('Féculents'),
+            ('Boissons'), ('Matières grasses'),
+            ('Sucres'), ('Autres');
