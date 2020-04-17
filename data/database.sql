@@ -38,7 +38,7 @@ CREATE TABLE tags
     tag_name VARCHAR(50) NOT NULL,
     PRIMARY KEY (id)
 );
-
+-- Hassan
 CREATE TABLE users
 (
     id            INT UNSIGNED AUTO_INCREMENT,
@@ -49,6 +49,7 @@ CREATE TABLE users
     PRIMARY KEY (id)
 );
 
+-- Jo
 CREATE TABLE recipes
 (
     id            MEDIUMINT UNSIGNED AUTO_INCREMENT,
@@ -64,6 +65,7 @@ CREATE TABLE recipes
     PRIMARY KEY (id)
 );
 
+-- Eric
 CREATE TABLE ingredients
 (
     id              SMALLINT UNSIGNED AUTO_INCREMENT,
@@ -72,6 +74,7 @@ CREATE TABLE ingredients
     PRIMARY KEY (id)
 );
 
+-- Valerian
 CREATE TABLE recipes_ingredients
 (
     ingredient_id SMALLINT UNSIGNED,
@@ -79,6 +82,7 @@ CREATE TABLE recipes_ingredients
     PRIMARY KEY (ingredient_id, recipe_id)
 );
 
+-- Camille
 CREATE TABLE recipe_books
 (
     user_id    INT UNSIGNED,
@@ -87,6 +91,7 @@ CREATE TABLE recipe_books
     PRIMARY KEY (user_id, recipe_id)
 );
 
+-- Hassan
 CREATE TABLE recipe_comments
 (
     id            INT UNSIGNED AUTO_INCREMENT,
@@ -99,11 +104,29 @@ CREATE TABLE recipe_comments
     PRIMARY KEY (id)
 );
 
+-- Hassan
 CREATE TABLE recipes_tags
 (
     tag_id    SMALLINT UNSIGNED,
     recipe_id MEDIUMINT UNSIGNED,
     PRIMARY KEY (tag_id, recipe_id)
 );
+
+/********************************
+  INSERTION DES DONNEES
+*********************************/
+
+-- Loqmen
+-- insertion des roles (utilisateur, auteur)
+
+-- Amandine
+-- insertion difficulty_levels (de 1 à 5)
+
+-- Eric
+-- Insertion de categories
+
+-- Camille
+-- Insertion de ingredients_kind
+
 
 
