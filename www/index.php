@@ -18,8 +18,6 @@ $app = new App($container);
 require "../app/routes/home.php";
 require "../app/routes/ingredientsList.php";
 require "../app/routes/recipe.php";
-
-
 require "../app/routes/register.php";
 
 //lancement de l'application
