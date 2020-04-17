@@ -30,6 +30,7 @@ CREATE TABLE ingredient_kinds
     id        SMALLINT UNSIGNED AUTO_INCREMENT,
     kind_name VARCHAR(30) NOT NULL,
     PRIMARY KEY (id)
+
 );
 
 CREATE TABLE tags
@@ -60,10 +61,18 @@ CREATE TABLE recipes
     prep_time     TINYINT UNSIGNED  NOT NULL,
     cooking_time  TINYINT UNSIGNED,
     category_id   TINYINT UNSIGNED  NOT NULL,
-    author_id     SMALLINT UNSIGNED NOT NULL,
-    PRIMARY KEY (id)
+    author_id     INT UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
+        CONSTRAINT difficulty_levels_to_recipes
+            FOREIGN KEY (difficulty_id)
+            REFERENCES difficulty_levels(id),
+        CONSTRAINT categories_to_recipes
+            FOREIGN KEY (category_id)
+            REFERENCES categories(id),
+        CONSTRAINT users_to_recipes
+            FOREIGN KEY (author_id)
+            REFERENCES users(id)
 );
-
 
 CREATE TABLE ingredients
 (
@@ -71,13 +80,22 @@ CREATE TABLE ingredients
     ingredient_name VARCHAR(30)      NOT NULL,
     kind_id         TINYINT UNSIGNED NOT NULL,
     PRIMARY KEY (id)
+        CONSTRAINT ingredient_kinds_to_ingredient
+        FOREIGN KEY (kind_id)
+        REFERENCES ingredient_kinds(id)
 );
 
 CREATE TABLE recipes_ingredients
 (
     ingredient_id SMALLINT UNSIGNED,
     recipe_id     MEDIUMINT UNSIGNED,
-    PRIMARY KEY (ingredient_id, recipe_id)
+    PRIMARY KEY (ingredient_id, recipe_id),
+    CONSTRAINT ingredient_id_to_recipe_id
+    FOREIGN KEY (ingredient_id)
+    REFERENCES ingredients (id),
+    CONSTRAINT recipe_id_to_ingredient_id
+    FOREIGN KEY (recipe_id)
+    REFERENCES recipes(id)
 );
 
 CREATE TABLE recipe_books
@@ -107,11 +125,7 @@ CREATE TABLE recipes_tags
     PRIMARY KEY (tag_id, recipe_id)
 );
 
--- Insert d'une recette pour test de la page
-INSERT INTO recipes(title, description, instructions, image, difficulty_id, prep_time, cooking_time, category_id, author_id)
-VALUES('La tarte aux pommes', 'Recette tradionnelle', '1. Allumez le four, 2. Préparez la pâtes, 3. Coupez les pommes', 'tartepommes.jpg', 1, 15, 40, 1);
-
--- Insert des tags
-INSERT INTO tags(id, tag_name)
-VALUES('deSaison', 'Apéro', 'Léger', 'Dessert', 'Simple');
+-- Insertion des catégories
+INSERT INTO categories (category_name)
+    VALUES ('Apéritf et buffet'), ('Entrée'), ('Plat principal'), ('Dessert');
 
