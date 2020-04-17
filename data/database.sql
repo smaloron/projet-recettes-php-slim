@@ -79,7 +79,13 @@ CREATE TABLE recipes_ingredients
 (
     ingredient_id SMALLINT UNSIGNED,
     recipe_id     MEDIUMINT UNSIGNED,
-    PRIMARY KEY (ingredient_id, recipe_id)
+    PRIMARY KEY (ingredient_id, recipe_id),
+    CONSTRAINT ingredient_id_to_recipe_id
+    FOREIGN KEY (ingredient_id)
+    REFERENCES ingredients (id),
+    CONSTRAINT recipe_id_to_ingredient_id
+    FOREIGN KEY (recipe_id)
+    REFERENCES recipes(id)
 );
 
 -- Camille
