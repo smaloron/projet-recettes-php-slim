@@ -19,7 +19,7 @@ $container = new Container($conf);
 
 //Entrée du container pour stocker une instance de PDO
 $container["pdo"] = function(){
-    $dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8;port=8889";
+    $dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8;port=3306";
     $options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
