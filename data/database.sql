@@ -30,7 +30,6 @@ CREATE TABLE ingredient_kinds
     id        SMALLINT UNSIGNED AUTO_INCREMENT,
     kind_name VARCHAR(30) NOT NULL,
     PRIMARY KEY (id)
-
 );
 
 CREATE TABLE tags
@@ -46,8 +45,11 @@ CREATE TABLE users
     user_name     VARCHAR(50)        NOT NULL,
     user_email    VARCHAR(50) UNIQUE NOT NULL,
     user_password VARCHAR(128)       NOT NULL,
-    role_id       TINYINT UNSIGNED   NOT NULL DEFAULT 1,
-    PRIMARY KEY (id)
+    role_id       INT UNSIGNED   NOT NULL DEFAULT 1,
+    PRIMARY KEY (id),
+    CONSTRAINT users_to_roles
+        FOREIGN KEY (role_id)
+        REFERENCES roles(id)
 );
 
 CREATE TABLE recipes
@@ -115,14 +117,23 @@ CREATE TABLE recipe_comments
     created_at    TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     recipe_rating TINYINT UNSIGNED,
     recipe_id     MEDIUMINT UNSIGNED,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+     CONSTRAINT recipe_comments_to_recipes
+        FOREIGN KEY (recipe_id)
+        REFERENCES recipes(id)
 );
 
 CREATE TABLE recipes_tags
 (
     tag_id    SMALLINT UNSIGNED,
     recipe_id MEDIUMINT UNSIGNED,
-    PRIMARY KEY (tag_id, recipe_id)
+    PRIMARY KEY (tag_id, recipe_id),
+        CONSTRAINT recipes_tags_to_tags
+            FOREIGN KEY (tag_id)
+            REFERENCES  tags(id),
+        CONSTRAINT recipes_tags_to_recipes
+            FOREIGN KEY (recipe_id)
+            REFERENCES recipes(id)
 );
 
 -- Insertion des catégories
@@ -134,5 +145,5 @@ INSERT INTO recipes(title, description, instructions, image, difficulty_id, prep
 VALUES('La tarte aux pommes', 'Recette tradionnelle', '1. Allumez le four, 2. Préparez la pâtes, 3. Coupez les pommes', 'tartepommes.jpg', 1, 15, 40, 1, 1);
 
 -- Insert des tags
-INSERT INTO tags(id, tag_name)
+INSERT INTO tags(tag_name)
 VALUES('deSaison', 'Apéro', 'Léger', 'Dessert', 'Simple');
