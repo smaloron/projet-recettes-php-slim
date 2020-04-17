@@ -147,3 +147,12 @@ VALUES('La tarte aux pommes', 'Recette tradionnelle', '1. Allumez le four, 2. Pr
 -- Insert des tags
 INSERT INTO tags(tag_name)
 VALUES('deSaison', 'Apéro', 'Léger', 'Dessert', 'Simple');
+
+-- Insertion difficulty_leves
+INSERT INTO difficulty_levels (difficulty_label)
+VALUES
+    ('Super facile'),
+    ('Facile'),
+    ('Moyen'),
+    ('Difficile'),
+    ('Très difficile');
