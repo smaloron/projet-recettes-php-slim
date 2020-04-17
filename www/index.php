@@ -17,5 +17,7 @@ $app = new App($container);
 
 require "../app/routes/home.php";
 
+require "../app/routes/showRecipe.php";
+
 //lancement de l'application
 $app->run();

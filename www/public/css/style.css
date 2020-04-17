@@ -1,0 +1,46 @@
+body{
+    font-family: Helvetica;
+}
+
+.yummy_title{
+    color: #56a854;
+
+}
+
+.category_link{
+    color:  #56a854;
+    font-size:14px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.recipe_name{
+    display: inline-block;
+}
+
+.section_1{
+    color: grey;
+    padding-bottom: 6%;
+    padding-top: 5%;
+    padding-left: 9%;
+    padding-right: 9%;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    border-radius: 3px;
+}
+
+.section_2{
+    padding: 3% 10% 3% 10%;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    border-radius: 3px;
+    color: grey;
+}
+
+.section-3{
+    overflow:scroll;
+    height:530px;
+}
+
+.img-recipe{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    border-radius: 5px;
+}
