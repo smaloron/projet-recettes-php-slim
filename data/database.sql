@@ -158,11 +158,7 @@ VALUES ('Apéritf et buffet'),
        ('Entrée'),
        ('Plat principal'),
        ('Dessert');
-/********************************
-  INSERTION DES DONNEES
-*********************************/
 
--- Loqmen
 -- insertion des roles (utilisateur, auteur)
 INSERT INTO roles (role_name) VALUES ('utilisateur'), ('auteur');
 
