@@ -80,8 +80,8 @@ CREATE TABLE ingredients
 (
     id              SMALLINT UNSIGNED AUTO_INCREMENT,
     ingredient_name VARCHAR(30)      NOT NULL,
-    kind_id         TINYINT UNSIGNED NOT NULL,
-    PRIMARY KEY (id)
+    kind_id         SMALLINT UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
         CONSTRAINT ingredient_kinds_to_ingredient
         FOREIGN KEY (kind_id)
             REFERENCES ingredient_kinds (id)
