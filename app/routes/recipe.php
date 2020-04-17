@@ -61,7 +61,8 @@ $app->post("/recipeForm", function(Request $request, Response $response){
         "description" => $description,
         "instructions" => $instructions,
         "prep_time" => $preparation,
-        "cooking_time" => $cooking
+        "cooking_time" => $cooking,
+        "author_id" => $_SESSION["user"]["id"]
     ];
 
 
@@ -69,8 +70,8 @@ $app->post("/recipeForm", function(Request $request, Response $response){
     $id =$request->getParam("id");
 
     //Requete SQL -  préparation - execution
-    $sql = "INSERT INTO recipes(title, category_id, difficulty_id, description, instructions, prep_time, cooking_time) 
-            VALUES (:title, :category_id, :difficulty_id, :description, :instructions, :prep_time, :cooking_time) ";
+    $sql = "INSERT INTO recipes(title, category_id, difficulty_id, description, instructions, prep_time, cooking_time, author_id) 
+            VALUES (:title, :category_id, :difficulty_id, :description, :instructions, :prep_time, :cooking_time, :author_id) ";
 
     //Préparation et execution de la requête avec les données à insérer
     $pdo = $this->get("pdoRecipe");

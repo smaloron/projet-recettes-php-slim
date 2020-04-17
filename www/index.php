@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 error_reporting(E_ALL);
 
 // Déclaration des classes dont on aura besoin
