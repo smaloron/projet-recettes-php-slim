@@ -140,3 +140,10 @@ CREATE TABLE recipes_tags
 INSERT INTO categories (category_name)
     VALUES ('Apéritf et buffet'), ('Entrée'), ('Plat principal'), ('Dessert');
 
+-- Insert d'une recette pour test de la page
+INSERT INTO recipes(title, description, instructions, image, difficulty_id, prep_time, cooking_time, category_id, author_id)
+VALUES('La tarte aux pommes', 'Recette tradionnelle', '1. Allumez le four, 2. Préparez la pâtes, 3. Coupez les pommes', 'tartepommes.jpg', 1, 15, 40, 1);
+
+-- Insert des tags
+INSERT INTO tags(id, tag_name)
+VALUES('deSaison', 'Apéro', 'Léger', 'Dessert', 'Simple');
