@@ -61,8 +61,17 @@ CREATE TABLE recipes
     prep_time     TINYINT UNSIGNED  NOT NULL,
     cooking_time  TINYINT UNSIGNED,
     category_id   TINYINT UNSIGNED  NOT NULL,
-    author_id     SMALLINT UNSIGNED NOT NULL,
-    PRIMARY KEY (id)
+    author_id     INT UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
+        CONSTRAINT difficulty_levels_to_recipes
+            FOREIGN KEY (difficulty_id)
+            REFERENCES difficulty_levels(id),
+        CONSTRAINT categories_to_recipes
+            FOREIGN KEY (category_id)
+            REFERENCES categories(id),
+        CONSTRAINT users_to_recipes
+            FOREIGN KEY (author_id)
+            REFERENCES users(id)
 );
 
 -- Eric
