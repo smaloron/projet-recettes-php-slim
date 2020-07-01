@@ -1,5 +1,22 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
-    <h1>Yummy votre espace délices</h1>
+
+    <div class="container-fluid">
+    <h2>Consulter la liste des articles</h2>
+    {% for article in articlesList %}
+    <div class="row " style="border: solid midnightblue; margin-bottom: 20px;">
+        <div class="col-md-8">
+
+            <h3>{{ article.title }}</h3>
+            <h4>Publié le : {{ article.publishedAt | date("m/d/Y")  }}</h4>
+            <h6>{{ article.description }}</h6>
+            <p>
+                <a href="/article/{{ article.id }}">Lire l'article</a>
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+
 {% endblock %}

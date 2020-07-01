@@ -11,14 +11,19 @@ $app->post('/login', function (Request $request, Response $response){
     $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
     $password = filter_input(INPUT_POST, "password", FILTER_DEFAULT);
 
-    $sql = "SELECT * FROM users WHERE email=?";
-    $statement = $this->pdo->prerare($sql);
+    $sql = "SELECT * FROM users WHERE user_email=?";
+    $statement = $this->pdo->prepare($sql);
     $statement->execute([$email]);
     $user = $statement->fetch();
 
     if($user && password_verify($password, $user["user_password"])){
         unset($user["user_password"]);
         $_SESSION["user"] = $user;
+        //redirection
+        return $response->withRedirect("/");
+    }else{
+        $error = "erreur d'authentification ";
+        $this->view->render($response, "login.html.twig", ["error" => $error]);
     }
 
 });

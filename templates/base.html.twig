@@ -6,11 +6,13 @@
     <title>Mon site</title>
 
     {% block css %}
-
+        <!-- Theme CSS -->
+       <!-- <link rel="stylesheet" href="../css/theme.css"> -->
         <link rel="stylesheet" href="../../public/css/style.css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    {% endblock %} {% block js %}
+    {% endblock %}
+    {% block js %}
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
                 integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
                 crossorigin="anonymous"></script>
@@ -27,25 +29,11 @@
 
 {% include '_navbar.html.twig' %}
 
-<div class="row justify-content-center">
-    <div class="col-12 text-center">
-        {% block title %}
-            <h1>Mon super site</h1>
-        {% endblock %}
-    </div>
-
-    <div class="col-md-6">
+    <div id="body-content" class="row justify-content-center">
+        <div class="col-md-6">
         {% block content %}{% endblock %}
+        </div>
     </div>
-
-    {% block aside %}
-        <aside class="col-md-3"></aside>
-    {% endblock %}
-
-
-</div>
-
-
 </body>
 
 <script>

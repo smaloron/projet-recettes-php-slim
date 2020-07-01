@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+    <h1>Liste des sports</h1>
+
+    <form class="form-inline" method="post">
+            <label class="col-md-3 m-2" style="font-weight: bold;">Ajouter un sport</label>
+            <input type="text" class="form-control col-md-4 m-2" name="sportName" placeholder="Football">
+            <button type="submit" class="btn btn-primary col-md-4 m-2">Valider</button>
+    </form>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Sport</th>
+            <th>action</th>
+        </tr>
+
+        {% for sport in sportsList %}
+            <tr>
+                <td>{{ sport.sport_name }}</td>
+                <td><a href="/sports-list/{{ sport.id }}" class="btn btn-danger">Supprimer</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+
+{% endblock %}

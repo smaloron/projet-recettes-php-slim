@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+    <div class="mt-5">
+    <h2>Accéder à la médiathèque sportive </h2>
+        <div class="row">
+        {% for item in videos %}
+        <div class="" >
+            <h4>{{ item.title }}</h4>
+            <video controls width="500" height="250" src="{{ item.url }}">La vidéo ne peut pas être lue</video>
+        </div>
+        {% endfor %}
+    </div>
+
+    </div>
+{% endblock %}

@@ -2,6 +2,7 @@
 
 
 {% block content %}
+    <div style="margin-top: 30px; border: dashed darkslateblue; padding: 20px;">
     {% if errors|length > 0 %}
         <div class="alert alert-danger">
             <ul>
@@ -35,5 +36,6 @@
     </div>
 
 </form>
+    </div>
 
 {% endblock %}

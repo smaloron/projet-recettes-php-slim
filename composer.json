@@ -1,9 +1,9 @@
 {
-    "name": "seb/projet-recettes",
+    "name": "Projet NFA036",
     "authors": [
         {
-            "name": "Sebastien Maloron",
-            "email": "contact@smaloron.eu"
+            "name": "Hassan Ajeg",
+            "email": "hassan.ajeg@hotmail.fr"
         }
     ],
     "require": {

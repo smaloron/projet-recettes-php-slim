@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+{% block content %}
+        <div class="col col-md-10" style="border: dashed darkslateblue; margin-top: 30px; padding: 10px;">
+        <h1>{{ article.title }}</h1>
+            <div>Sport : {{ article.sport_name }}</div>
+            <h4>écrit par :  {{ article.user_name }}  le  {{ article.published_at | date("m/d/Y") }} </h4>
+        <p>{{ article.description }}</p>
+
+            <div>{{ article.texte }}</div>
+        </div>
+        <div class="col col-md-10" style="border: dashed darkslateblue; margin-top: 30px; padding: 10px;">
+            <h4>Ajouter un commentaire</h4>
+            <form method="post">
+                <div class="form-group">
+                    <textarea name="commentText" class="form-control" rows="3" cols="20"></textarea>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Valider</button>
+            </form>
+        </div>
+
+
+{% endblock %}

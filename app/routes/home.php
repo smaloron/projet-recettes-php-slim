@@ -4,5 +4,9 @@ use Slim\Http\Response;
 
 
 $app->get("/", function (Request $request, Response $response){
-   $this->view->render($response, "home.html.twig", []);
+    $pdo = $this->get("pdoArticle");
+    $articlesList = $pdo->query("SELECT * FROM articles WHERE published_at < NOW()");
+   $this->view->render($response, "home.html.twig", [
+       "articlesList" => $articlesList->fetchAll(),
+   ]);
 });

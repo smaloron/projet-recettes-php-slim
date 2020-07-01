@@ -2,34 +2,11 @@ body{
     font-family: Helvetica;
 }
 
-.yummy_title{
-    color: #56a854;
-
-}
-
-.ingredients{
-    color: grey;
-    text-decoration: none;
-}
-
-.tags{
-    color: white;
-}
-
-.tags:hover{
-    color: white;
-
-}
-
 .category_link{
     color:  #56a854;
     font-size:14px;
     font-weight: bold;
     text-decoration: underline;
-}
-
-.recipe_name{
-    display: inline-block;
 }
 
 .section_1{
@@ -52,9 +29,4 @@ body{
 .section-3{
     overflow:scroll;
     height:530px;
-}
-
-.img-recipe{
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    border-radius: 5px;
 }
